@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apintus <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: apintus <apintus@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:11:40 by apintus           #+#    #+#             */
-/*   Updated: 2023/11/16 17:50:21 by apintus          ###   ########.fr       */
+/*   Updated: 2024/01/31 12:28:04 by apintus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -67,5 +69,16 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//PRINTF
+int		ft_printf(const char *str, ...);
+size_t	ft_format(char c, va_list args);
+
+size_t	ft_putchar(int c);
+size_t	ft_putstr(char *str);
+size_t	ft_digit(long nbr, int base, int uppercase);
+size_t	ft_digit_ptr(unsigned long nbr, unsigned long base);
+size_t	ft_format_ptr(va_list args, size_t len);
+size_t	ft_format_str(va_list args, size_t len);
 
 #endif

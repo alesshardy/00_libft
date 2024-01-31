@@ -3,12 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apintus <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: apintus <apintus@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/14 12:20:45 by apintus           #+#    #+#              #
-#    Updated: 2023/11/28 11:36:57 by apintus          ###   ########.fr        #
+#    Updated: 2024/01/31 13:00:17 by apintus          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+####################################################
+## ARGUMENTS
+
+CC = gcc
+RM = rm -f
+AR = ar rc
+RN = ranlib
+CFLAGS = -Wall -Wextra -Werror -g
+
+NAME = libft.a
+
+##################################################
+## SOURCES
 
 SRCS =	ft_isalpha.c\
 		ft_isdigit.c\
@@ -44,6 +58,10 @@ SRCS =	ft_isalpha.c\
 		ft_putstr_fd.c\
 		ft_putendl_fd.c\
 		ft_putnbr_fd.c\
+		ft_printf.c\
+		ft_putchar.c\
+		ft_putstr.c\
+		ft_utils.c\
 
 BONUS =	ft_lstnew.c\
 		ft_lstadd_front.c\
@@ -55,17 +73,18 @@ BONUS =	ft_lstnew.c\
 		ft_lstiter.c\
 		ft_lstmap.c\
 
+GNL = get_next_line.c\
+		get_next_line_utils.c\
+
 OBJS = $(SRCS:.c=.o)
 
 OBJS_BONUS = $(BONUS:.c=.o)
 
-CC = gcc
-RM = rm -f
-AR = ar rc
-RN = ranlib
-CFLAGS = -Wall -Wextra -Werror
+GNL_OBJS = $(GNL:.c=.o)
 
-NAME = libft.a
+
+####################################################
+## RULES
 
 all : $(NAME)
 
@@ -74,11 +93,11 @@ $(NAME) :
 	$(AR) $(NAME) $(OBJS)
 	$(RN) $(NAME)
 
-bonus : $(OBJS_BONUS)
-		$(AR) $(NAME) $(OBJS_BONUS)
+bonus : $(OBJS_BONUS) $(GNL_OBJS)
+		$(AR) $(NAME) $(OBJS_BONUS) $(GNL_OBJS)
 
 clean :
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	$(RM) $(OBJS) $(OBJS_BONUS) $(GNL_OBJS)
 
 fclean : clean
 	$(RM) $(NAME)
